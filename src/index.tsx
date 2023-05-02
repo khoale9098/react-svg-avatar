@@ -1,15 +1,23 @@
 "use-client";
 
-import React, { useEffect, useState, forwardRef, useId } from "react";
+import React, { forwardRef, useId } from "react";
 
 export interface AvatarProps {
-  src?: string | null;
-
-  alt?: string;
+  src: string;
 
   size?: number;
 
   children?: React.ReactNode;
+
+  icon?: React.ReactNode;
+
+  style?: object;
+
+  id: string;
+
+  radius: number;
+
+  className: string;
 }
 
 const ReactSVGAvatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
@@ -25,9 +33,9 @@ const ReactSVGAvatar = forwardRef<HTMLDivElement, AvatarProps>((props, ref) => {
       <svg
         data-visualcompletion="ignore-dynamic"
         role="none"
+        aria-hidden="true"
         width={size}
         height={size}
-        className="overflow-visible"
       >
         <g mask={`url(#${avatarId})`}>
           <image

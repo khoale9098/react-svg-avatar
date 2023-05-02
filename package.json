@@ -1,19 +1,64 @@
 {
-  "private": true,
+  "private": false,
   "name": "react-svg-avatar",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"tsc -w\" \"babel src --watch --out-dir lib --extensions '.ts,.tsx'\" -n 'tsc,babel' -k",
+    "build": "tsc && babel src --out-dir lib --extensions '.ts,.tsx' && webpack",
+    "test": "jest --config jestconfig.json",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "typecheck": "tsc --noEmit true --emitDeclarationOnly false",
+    "prepublishOnly": "yarn lint && yarn typecheck && yarn format && yarn build",
+    "precommit": "lint-staged && yarn typecheck"
   },
   "keywords": [],
-  "author": "",
+  "author": "khoale9098@gmail.com",
   "license": "ISC",
   "devDependencies": {
-    "husky": "^8.0.3"
+    "@babel/cli": "^7.21.5",
+    "@babel/core": "^7.21.5",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.21.5",
+    "@babel/preset-env": "^7.21.5",
+    "@babel/preset-typescript": "^7.21.5",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.20.55",
+    "@types/ramda": "^0.26.44",
+    "@types/react": "^18.2.0",
+    "@types/yup": "^0.26.37",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "concurrently": "^4.1.2",
+    "husky": "^8.0.3",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.5.0",
+    "npm-dts-webpack-plugin": "^1.3.12",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.3.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-react": "^4.1.0",
+    "tslint-react-a11y": "^1.1.0",
+    "tslint-react-hooks": "^2.2.2",
+    "typescript": "^3.9.10",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.3"
   },
   "dependencies": {
     "react": "^18.2.0"
+  },
+  "resolutions": {
+    "handlebars": "^4.4.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": [
+      "tslint",
+      "prettier --write",
+      "git add"
+    ]
   }
 }

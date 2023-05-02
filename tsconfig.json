@@ -1,23 +1,16 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "module": "umd",
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "outDir": "./lib",
     "esModuleInterop": true,
-    "lib": ["DOM", "ES2015", "ES2021.WeakRef"],
-    "module": "es2020",
     "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noUncheckedIndexedAccess": true,
-    "jsx": "react-jsx",
-    "resolveJsonModule": true,
     "strict": true,
-    "target": "es2018",
-    "typeRoots": ["node_modules/@types", "definitions"],
-    "types": ["jest", "node"]
+    "baseUrl": ".",
+    "noUnusedLocals": true
   },
-  "exclude": ["node_modules"],
-  "include": [
-    "definitions/css.d.ts",
-    "definitions/react.d.ts",
-    "packages/**/*.ts",
-    "packages/**/*.tsx"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules/**/*", "**/__tests__/*"]
 }
